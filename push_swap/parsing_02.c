@@ -6,7 +6,7 @@
 /*   By: aohssine <aohssine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 10:29:37 by aohssine          #+#    #+#             */
-/*   Updated: 2024/05/29 11:04:11 by aohssine         ###   ########.fr       */
+/*   Updated: 2024/05/30 15:12:33 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,19 @@ t_node	*fill_args(char **argv)
 		while (arg[++j])
 		{
 			if (is_max(ft_atol(arg[j])))
+			{
+				free_args(arg, j);	
 				return (NULL);
+			}
 			add_to_stack(creat_node((int)ft_atol(arg[j])), &head);
 			free(arg[j]);
 		}
-		free(arg[j]);
 		free(arg);
 	}
-	if (check_double(head) == -1)
+	if (check_double(head) == -1){
+		free_stack(&head);
 		return (NULL);
+	}
 	return (head);
 }
 

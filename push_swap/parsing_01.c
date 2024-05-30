@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_01.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aohssine <aohssine@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aohssine <aohssine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 10:29:27 by aohssine          #+#    #+#             */
-/*   Updated: 2024/05/29 10:29:31 by aohssine         ###   ########.fr       */
+/*   Updated: 2024/05/30 13:17:37 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	is_max(long nbr)
 {
+	// chack length before check value 
 	if (nbr > 2147483647 || nbr < -2147483648)
 		return (1);
 	else

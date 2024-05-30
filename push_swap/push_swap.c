@@ -6,7 +6,7 @@
 /*   By: aohssine <aohssine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 10:42:25 by aohssine          #+#    #+#             */
-/*   Updated: 2024/05/30 12:58:59 by aohssine         ###   ########.fr       */
+/*   Updated: 2024/05/30 15:17:04 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ void	push_swap(char **args)
 		sort_to_b(&stack_a, &stack_b, range);
 		sort_to_a(&stack_a, &stack_b);
 	}
+	// free_stack(&stack_a);
 	return ;
 }
 
-void mian_2()
+void main2()
 {
 	system("leaks push_swap");
 }
@@ -49,9 +50,38 @@ int	main(int argc, char **argv)
 		if (check_args(argc, argv) == -1)
 		{
 			put_message("Error\n", 2);
+			main2();
 			return (0);
 		}
 		push_swap(argv);
+		main2();
 	}
-	mian_2();
 }
+void free_args(char **arg , int size)
+{
+	int i;
+	(void)size;
+
+	i = 0 ;
+	while(arg[i]){
+		printf("%p \n",arg[i]);
+		free(arg[i]);
+		i++;	
+	}
+	printf("%p \n",arg);
+	free(arg);
+	return ;
+}	
+void free_stack(t_node **node)
+{
+	t_node *tmp ;
+
+	tmp = *node ;
+	while (tmp != NULL){
+		free(tmp);
+		tmp = tmp->next ;
+	}
+	free(node);
+	return ;
+}	
+

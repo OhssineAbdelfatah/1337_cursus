@@ -6,7 +6,7 @@
 /*   By: aohssine <aohssine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 10:45:01 by aohssine          #+#    #+#             */
-/*   Updated: 2024/05/29 14:17:58 by aohssine         ###   ########.fr       */
+/*   Updated: 2024/05/30 15:16:32 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define PUSH_SWAP_H
 
 # include "libft/libft.h"
+
+#include<stdio.h> //test ******
+
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -91,6 +94,8 @@ int					find_max(t_node *stack);
 
 t_node				*creat_node(int num);
 void				add_to_stack(t_node *node, t_node **head);
+void free_args(char **arg, int size);
+void free_stack(t_node **node);
 
 /*//////////////////////////////////////////////////////////////////////
 //                             SORT                                   //
