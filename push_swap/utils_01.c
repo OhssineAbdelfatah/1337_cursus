@@ -6,7 +6,7 @@
 /*   By: aohssine <aohssine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 10:46:57 by aohssine          #+#    #+#             */
-/*   Updated: 2024/05/29 14:25:42 by aohssine         ###   ########.fr       */
+/*   Updated: 2024/05/30 19:48:03 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,11 @@ t_node	*creat_node(int num)
 	t_node	*node;
 
 	node = (t_node *)malloc(sizeof(t_node));
-	if (!node)
-		put_message("node allocation failed.", 2);
+	if (node == NULL)
+	{
+		put_message("Error\n", 2);
+		return (NULL);
+	}
 	node->data = num;
 	node->next = NULL;
 	node->ind = 0;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_to_b.c                                        :+:      :+:    :+:   */
+/*   push_algo.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aohssine <aohssine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 10:46:23 by aohssine          #+#    #+#             */
-/*   Updated: 2024/05/29 11:49:04 by aohssine         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:00:46 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@ void	sort_to_b(t_node **stack_a, t_node **stack_b, int range)
 {
 	int	start;
 	int	end;
-	int	size;
 	int	temp;
 
 	start = 0;
 	end = range - 1;
 	sort_temp(stack_a);
-	size = lstsize(*stack_a);
 	while (lstsize(*stack_a) >= 1)
 	{
 		if ((*stack_a)->ind <= end)

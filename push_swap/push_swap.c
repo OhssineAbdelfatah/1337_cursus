@@ -6,14 +6,12 @@
 /*   By: aohssine <aohssine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 10:42:25 by aohssine          #+#    #+#             */
-/*   Updated: 2024/05/30 15:17:04 by aohssine         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:03:47 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// is sorted // locate in sort.c
-// free stack // locate in main.c
 void	push_swap(char **args)
 {
 	t_node	*stack_a;
@@ -24,7 +22,12 @@ void	push_swap(char **args)
 	stack_b = NULL;
 	stack_a = fill_args(args);
 	if (stack_a == NULL)
-		put_message("Error\n", 2);
+		return (put_message("Error\n", 2));
+	if (is_sorted(stack_a) == 1)
+	{
+		free_stack(&stack_a);
+		return ;
+	}
 	if (lstsize(stack_a) <= 5)
 		mini_sorted(&stack_a, &stack_b);
 	else
@@ -34,13 +37,8 @@ void	push_swap(char **args)
 		sort_to_b(&stack_a, &stack_b, range);
 		sort_to_a(&stack_a, &stack_b);
 	}
-	// free_stack(&stack_a);
+	free_stack(&stack_a);
 	return ;
-}
-
-void main2()
-{
-	system("leaks push_swap");
 }
 
 int	main(int argc, char **argv)
@@ -50,38 +48,57 @@ int	main(int argc, char **argv)
 		if (check_args(argc, argv) == -1)
 		{
 			put_message("Error\n", 2);
-			main2();
 			return (0);
 		}
 		push_swap(argv);
-		main2();
 	}
+	return (0);
 }
-void free_args(char **arg , int size)
-{
-	int i;
-	(void)size;
 
-	i = 0 ;
-	while(arg[i]){
-		printf("%p \n",arg[i]);
+void	free_args(char **arg, int size)
+{
+	int	i;
+
+	(void)size;
+	i = 0;
+	while (arg[i])
+	{
 		free(arg[i]);
-		i++;	
+		i++;
 	}
-	printf("%p \n",arg);
 	free(arg);
 	return ;
-}	
-void free_stack(t_node **node)
+}
+
+void	free_stack(t_node **node)
 {
-	t_node *tmp ;
+	t_node	*tmp;
 
-	tmp = *node ;
-	while (tmp != NULL){
-		free(tmp);
-		tmp = tmp->next ;
+	if (*node == NULL)
+		return ;
+	tmp = NULL;
+	while (*node != NULL)
+	{
+		tmp = (*node)->next;
+		free(*node);
+		*node = tmp;
 	}
-	free(node);
 	return ;
-}	
+}
 
+int	is_sorted(t_node *stack)
+{
+	t_node	*curr;
+	t_node	*next;
+
+	curr = stack;
+	next = stack->next;
+	while (next != NULL)
+	{
+		if (curr->data > next->data)
+			return (0);
+		curr = curr->next;
+		next = next->next;
+	}
+	return (1);
+}

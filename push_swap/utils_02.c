@@ -6,26 +6,28 @@
 /*   By: aohssine <aohssine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 10:47:08 by aohssine          #+#    #+#             */
-/*   Updated: 2024/05/29 10:59:08 by aohssine         ###   ########.fr       */
+/*   Updated: 2024/05/30 19:48:09 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	add_to_stack(t_node *node, t_node **head)
+int	add_to_stack(t_node *node, t_node **head)
 {
 	t_node	*tmp;
 
+	if (node == NULL)
+		return (-1);
 	if (*head == NULL)
 	{
 		*head = node;
-		return ;
+		return (0);
 	}
 	tmp = *head;
 	while (tmp->next != NULL)
 		tmp = tmp->next;
 	tmp->next = node;
-	return ;
+	return (0);
 }
 
 void	find_min_pb(t_node **stack_a, t_node **stack_b)
@@ -82,7 +84,7 @@ int	find_max(t_node *stack)
 	if (stack == NULL)
 		return (0);
 	i = 0;
-	max = INT32_MIN;
+	max = INT_MIN;
 	ind = 0;
 	tmp = stack;
 	while (tmp != NULL)

@@ -6,7 +6,7 @@
 /*   By: aohssine <aohssine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 10:29:37 by aohssine          #+#    #+#             */
-/*   Updated: 2024/05/30 15:12:33 by aohssine         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:39:10 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ t_node	*fill_args(char **argv)
 	int		i;
 	int		j;
 	char	**arg;
-	t_node	*head;
+	t_node	*n;
 
-	head = NULL;
+	n = NULL;
 	i = 0;
 	while (argv[++i])
 	{
@@ -69,21 +69,18 @@ t_node	*fill_args(char **argv)
 		j = -1;
 		while (arg[++j])
 		{
-			if (is_max(ft_atol(arg[j])))
+			if (add_to_stack(creat_node(num(arg[j], arg, &n)), &n) == -1)
 			{
-				free_args(arg, j);	
+				free_stack(&n);
+				free_args(arg, 1);
 				return (NULL);
 			}
-			add_to_stack(creat_node((int)ft_atol(arg[j])), &head);
-			free(arg[j]);
 		}
-		free(arg);
+		free_args(arg, 0);
 	}
-	if (check_double(head) == -1){
-		free_stack(&head);
+	if (check_double(n) == -1)
 		return (NULL);
-	}
-	return (head);
+	return (n);
 }
 
 static int	space_sign(const char *s, int *sign)
@@ -102,21 +99,26 @@ static int	space_sign(const char *s, int *sign)
 	return (i);
 }
 
-long	ft_atol(const char *str)
+int	num(const char *str, char **arg, t_node **head)
 {
-	int					i;
-	int					sign;
-	unsigned long long	result;
-	unsigned long long	temp;
+	int		i;
+	int		sign;
+	long	res;
 
-	result = 0;
+	res = 0;
 	sign = 1;
 	i = space_sign(str, &sign);
 	while (str[i] <= '9' && str[i] >= '0')
 	{
-		temp = result;
-		result = result * 10 + str[i] - 48;
+		res = res * 10 + str[i] - 48;
+		if ((res > INT32_MAX && sign == 1) || (res > 2147483648 && sign == -1))
+		{
+			free_args(arg, 0);
+			free_stack(head);
+			put_message("Error\n", 2);
+			exit(1);
+		}
 		i++;
 	}
-	return (result * sign);
+	return ((int)res * sign);
 }
