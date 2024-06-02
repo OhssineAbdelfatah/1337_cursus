@@ -2,9 +2,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 SRC = parsing_01.c parsing_02.c \
 rules_01.c rules_02.c \
-utils_01.c utils_02.c \
-push_swap.c   sort.c\
-push_algo.c 
+checker.c utils.c utils_2.c
 
 RED = \033[0;31m
 GREEN = \033[0;32m
@@ -14,7 +12,7 @@ LIBFT_DIR = ./libft
 LIBFT = ./libft/libft.a
 
 OBJ = $(SRC:.c=.o)
-NAME = push_swap
+NAME = checker
 
 all: $(NAME)
 
@@ -22,17 +20,17 @@ $(LIBFT) :
 	@echo "$(GREEN)libft... $(END)"
 	@make -C $(LIBFT_DIR)
 
-$(NAME) : $(OBJ) $(LIBFT) push_swap.h
-	@echo "$(GREEN)push_swap...$(END)"
+$(NAME) : $(OBJ) $(LIBFT) checker.h
+	@echo "$(GREEN)checker...$(END)"
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@echo "$(RED)clean libft $(END)"
+	@echo "$(RED)clean libft $(END)"               
 	@make -C $(LIBFT_DIR) clean
-	@echo "$(RED)clean push_swap $(END)"
+	@echo "$(RED)clean checker $(END)"
 	rm -fr $(OBJ)   
 
 fclean: clean

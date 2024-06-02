@@ -6,7 +6,7 @@
 /*   By: aohssine <aohssine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 10:29:37 by aohssine          #+#    #+#             */
-/*   Updated: 2024/05/31 14:39:10 by aohssine         ###   ########.fr       */
+/*   Updated: 2024/06/02 12:06:08 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,11 @@ t_node	*fill_args(char **argv)
 			if (add_to_stack(creat_node(num(arg[j], arg, &n)), &n) == -1)
 			{
 				free_stack(&n);
-				free_args(arg, 1);
+				free_args(arg);
 				return (NULL);
 			}
 		}
-		free_args(arg, 0);
+		free_args(arg);
 	}
 	if (check_double(n) == -1)
 		return (NULL);
@@ -113,7 +113,7 @@ int	num(const char *str, char **arg, t_node **head)
 		res = res * 10 + str[i] - 48;
 		if ((res > INT32_MAX && sign == 1) || (res > 2147483648 && sign == -1))
 		{
-			free_args(arg, 0);
+			free_args(arg);
 			free_stack(head);
 			put_message("Error\n", 2);
 			exit(1);

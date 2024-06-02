@@ -6,7 +6,7 @@
 /*   By: aohssine <aohssine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 10:46:07 by aohssine          #+#    #+#             */
-/*   Updated: 2024/05/30 19:47:20 by aohssine         ###   ########.fr       */
+/*   Updated: 2024/05/31 19:04:15 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	sort_3_nbr(t_node **head)
 {
-	if (lstsize(*head) != 3)
-		return ;
 	if ((*head)->data > (*head)->next->data
 		&& (*head)->data > (*head)->next->next->data)
+	{
 		ra_rb(head, 'a');
-	else if ((*head)->data > (*head)->next->data)
-		sa_sb(head, 'a');
+		if ((*head)->data > (*head)->next->data)
+			sa_sb(head, 'a');
+	}
 	else if ((*head)->next->data > (*head)->next->next->data
 		&& (*head)->next->data > (*head)->data)
 	{

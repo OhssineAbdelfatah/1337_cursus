@@ -6,7 +6,7 @@
 /*   By: aohssine <aohssine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 10:42:25 by aohssine          #+#    #+#             */
-/*   Updated: 2024/05/31 14:03:47 by aohssine         ###   ########.fr       */
+/*   Updated: 2024/06/02 12:05:21 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,10 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-void	free_args(char **arg, int size)
+void	free_args(char **arg)
 {
 	int	i;
 
-	(void)size;
 	i = 0;
 	while (arg[i])
 	{
