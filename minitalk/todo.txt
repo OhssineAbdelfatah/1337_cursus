@@ -1,0 +1,6 @@
+1 handle norminette 
+
+2 protect pid in client input & check isdigit
+
+3 handle multipme clients -- not mandatory
+

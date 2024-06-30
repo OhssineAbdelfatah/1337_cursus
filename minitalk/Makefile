@@ -5,7 +5,7 @@ RM = rm -rf
 SRC_SRVR = server.c server_utils.c
 SRC_CLNT = client.c client_utils.c
 
-CLNT_NAME = clinet
+CLNT_NAME = client
 SRVR_NAME = server
 
 OBJ_SRVR = $(SRC_SRVR:.c=.o)
